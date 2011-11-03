@@ -1,0 +1,3 @@
+[submodule "targets/android/lib/libpng"]
+	path = targets/android/lib/libpng
+	url = https://github.com/julienr/libpng-android.git
