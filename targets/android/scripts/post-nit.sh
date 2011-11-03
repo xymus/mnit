@@ -12,6 +12,7 @@ ini_cwd=`pwd`
 cd obj/android
 
 cp ${ADIR}/templates/jni/Android.mk jni/Android.mk
+cp ${ADIR}/templates/default.properties default.properties
 
 if [ $debug ]; then
 	${ADIR}/scripts/name.sh "${app_name}-debug" "${pkg_name}.debug" $version
