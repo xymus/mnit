@@ -3,17 +3,22 @@ import mnit
 class MyApp
 	super App
 
-	#var img : I
+	var img : nullable I = null
 	init
 	do
 		super
 	end
 
-	#redef fun init_window
-	#do
-		#super
-		#img = load_asset( "images/fighter.png" ).as(Image)
-	#end
+	redef fun init_window
+	do
+		super
+
+		#var txt = load_asset( "hello.txt" ).as(String)
+		#print txt
+		#print txt.length
+
+		img = load_asset( "fighter.png" ).as(Image)
+	end
 
 	var r: Float = 0.0
 	var g: Float = 0.0
@@ -26,7 +31,11 @@ class MyApp
 
 		if display isa Opengles1Display then
 			display.clear( r, g, b, 1.0 )
-			#display.blit( img.as(Opengles1Image), 100, 100 )
+
+			var img = self.img
+			if img != null then
+				display.blit( img.as(Opengles1Image), 100, 100 )
+			end
 		else
 			print "not a opengles"
 		end

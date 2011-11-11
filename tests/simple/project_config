@@ -1,0 +1,10 @@
+project_name=mnitsimpletest
+project_version=0.1
+
+# android
+android_app_name=mnitsimpletest
+android_pkg_name=net.xymus.mnitsimpletest
+android_apk_name=mnitsimpletest
+
+# linux
+linux_bin_name=mnitsimpletest
