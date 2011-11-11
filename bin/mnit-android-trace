@@ -1,0 +1,4 @@
+#!/bin/sh
+
+adb logcat | ndk-stack -sym obj/android/obj/local/armeabi/
+
