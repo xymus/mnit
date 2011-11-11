@@ -12,8 +12,7 @@ android: mnit
 	nits -I src/ -i src/android/*.nit
 
 tests: linux android
-	mnitc -t linux -o bin/simple_linux tests/simple/simple_linux.nit
-	mnitc -t android --deploy -o bin/simple_linux tests/simple/simple_android.nit
+	make -C tests/simple
 
 doc:
 	nitdoc --log -d doc/mnit --log-dir doc/log/mnit src/mnit/mnit.nit
