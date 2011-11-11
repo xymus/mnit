@@ -1,0 +1,73 @@
+#!/bin/sh
+
+NITC=nitc
+#MNIT_DIR=/home/xymus/projects/mnit/
+
+# load configs
+sc(){
+export $1=`cat project_config  | grep -ve "^#" -ve "^$" | grep "$1" | sed "s/.*=//"`
+}
+sc project_name
+sc project_version
+sc android_app_name
+sc android_pkg_name
+sc android_apk_name
+
+usage()
+{
+	e=`basename "$0"`
+	cat<<END
+usage: $e -t linux|android (and nitc options as below)
+END
+	$NITC --help
+}
+
+stop=false
+target=false
+debug=false
+deploy=false
+n=false
+while [ "$stop" = "false" ]; do
+	case $1 in 
+		-t) target=$2; shift; shift;;
+		-i|--install) deploy=true; shift;;
+		-d|--debug) debug=true; shift;;
+		-h|--help) usage; exit;;
+		-n) n=true; shift;;
+		*) stop=true
+	esac
+done
+
+# pre compilation
+case $target in
+	linux) OPTS="-I ${MNIT_DIR}/src/ --cc-header-path ${MNIT_DIR}/src/linux/";;
+	android) OPTS="-I ${MNIT_DIR}/src/ --cc-header-path ${MNIT_DIR}/src/android/ --no-cc --compdir obj/android/jni/nit_compile"
+		PRE_OPTS="$project_name $android_app_name $android_pkg_name $android_apk_name $debug $deploy $project_version"
+		POST_OPTS="$project_name $android_app_name $android_pkg_name $android_apk_name $debug $deploy $project_version";;
+	false) echo No target specified, use -t; usage; exit;;
+	*) echo Invalid target $target, valid targets are: linux, android; usage; exit;;
+esac
+
+pre=$MNIT_DIR/targets/$target/scripts/pre-nit.sh
+if [ -x $pre ]; then
+	$pre $PRE_OPTS
+	echo $pre $PRE_OPTS
+fi
+
+# compile Nit!
+if [ "$n" = "true" ]; then
+	echo $NITC $OPTS $@
+else
+	$NITC $OPTS $@
+	if [ ! $? ]; then
+		echo FAILED: $NITC $OPTS $@
+		exit 1
+	fi
+fi
+
+# post compilation
+post=$MNIT_DIR/targets/$target/scripts/post-nit.sh
+if [ -x $post ]; then
+	$post $POST_OPTS
+fi
+
