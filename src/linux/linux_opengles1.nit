@@ -42,7 +42,7 @@ redef class Opengles1Display # as `{struct mnit_opengles_Texture *`}
 	}
 
 	SDL_SysWMinfo mnit_sys_info;
-	 // SDL_VERSION(&sysInfo.version);
+	 SDL_VERSION(&mnit_sys_info.version);
 	 if(SDL_GetWMInfo(&mnit_sys_info) <= 0)
 	 {
 		  printf("Unable to get window handle");
