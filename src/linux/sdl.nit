@@ -1,7 +1,9 @@
 module sdl
 
-import display
-import input_events
+import mnit # for
+#import display
+#import input_events
+
 import `{
 #include <unistd.h>
 #include <SDL/SDL.h>
