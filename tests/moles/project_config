@@ -1,0 +1,10 @@
+project_name=moles
+project_version=0.1
+
+# android
+android_app_name=moles
+android_pkg_name=net.xymus.moles
+android_apk_name=moles
+
+# linux
+linux_bin_name=moles

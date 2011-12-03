@@ -13,6 +13,7 @@ android: mnit
 
 tests: linux android
 	make -C tests/simple
+	make -C tests/moles
 
 doc:
 	nitdoc --log -d doc/mnit --log-dir doc/log/mnit src/mnit/mnit.nit
