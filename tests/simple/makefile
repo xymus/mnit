@@ -8,4 +8,4 @@ android:
 	mnitc -t android -i src/simple_android.nit
 
 clean:
-	trash bin obj
+	rm -rf bin obj
