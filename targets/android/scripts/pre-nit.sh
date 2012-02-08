@@ -9,9 +9,9 @@ version=$7
 and_path=obj/android/
 
 if [ -e $and_path ]; then
-	android update project --name $project_name --target 4 --path $and_path
+	android update project --name $project_name --target android-10 --path $and_path
 else
-	android create project --name $project_name --target 4 --path $and_path --package $pkg_name --activity app_name
+	android create project --name $project_name --target android-10 --path $and_path --package $pkg_name --activity $app_name
 fi
 
 mkdir -p ${and_path}/jni/out
