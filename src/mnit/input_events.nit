@@ -25,6 +25,7 @@ interface PointerEvent
 
 	fun x : Float is abstract
 	fun y : Float is abstract
+	fun down : Bool is abstract
 end
 
 interface MotionEvent

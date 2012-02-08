@@ -202,7 +202,7 @@ extern InnerAndroidMotionEvent as `{AInputEvent *`}
 	private fun pointers_count : Int is extern `{ 
 	return AMotionEvent_getPointerCount( recv );
 	`}
-	private fun begins_down : Bool is extern `{
+	private fun just_went_down : Bool is extern `{
 	return (AMotionEvent_getAction(recv) & AMOTION_EVENT_ACTION_MASK) == AMOTION_EVENT_ACTION_DOWN;
 	`}
 	private fun edge : Int is extern `{
@@ -244,7 +244,7 @@ class AndroidMotionEvent
 		end
 	end
 
-	fun begins_down : Bool do return inner_event.begins_down
+	redef fun just_went_down : Bool do return inner_event.just_went_down
 	fun edge : Int do return inner_event.edge
 
 	redef fun down_pointer : nullable AndroidPointerEvent
@@ -280,6 +280,8 @@ class AndroidPointerEvent
 	private fun extern_pressure( motion_event : InnerAndroidMotionEvent, pointer_id : Int ) : Float is extern `{
 	return AMotionEvent_getPressure( motion_event, pointer_id );
 	`}
+
+	redef fun down do return true
 end
 
 extern AndroidKeyEvent as `{AInputEvent *`}
