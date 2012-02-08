@@ -55,7 +55,7 @@ extern SDLDisplay as `{SDL_Surface *`}
 	return recv->h;
 	`}
 	
-	fun fill_rect( rect : Rectangle, r, g, b : Int ) is extern `{
+	fun fill_rect( rect : SDLRectangle, r, g, b : Int ) is extern `{
 	SDL_FillRect( recv, rect,  SDL_MapRGB(recv->format,r,g,b) );
 	`}
 	
@@ -153,7 +153,7 @@ extern SDLImage # as `{SDL_Surface*`}
 	return image;
 	`}
 
-	new partial( original : Image, clip : Rectangle ) is extern `{
+	new partial( original : Image, clip : SDLRectangle ) is extern `{
 	return NULL;
 	`}
 	
@@ -191,7 +191,7 @@ extern SDLImage # as `{SDL_Surface*`}
 	fun is_ok : Bool do return true # TODO
 end
 
-extern Rectangle as `{SDL_Rect*`}
+extern SDLRectangle as `{SDL_Rect*`}
 	new ( x : Int, y : Int, w : Int, h : Int ) is extern `{
 	SDL_Rect *rect = malloc( sizeof( SDL_Rect ) );
 	rect->x = (Sint16)x;
@@ -243,7 +243,7 @@ class SDLMouseEvent
 	redef var x : Float
 	redef var y : Float
 	var button : Int
-	var down : Bool
+	redef var down : Bool
 	fun up : Bool do return not down
 	
 	init ( x, y : Float, button : Int, down : Bool )
@@ -270,7 +270,6 @@ class SDLKeyEvent
 
 	var key_name : String
 	var down : Bool
-	fun up : Bool do return not down
 	
 	init ( key_name : String, down : Bool )
 	do
@@ -292,6 +291,8 @@ class SDLKeyEvent
 			return "KeyboardEvent key {key_name} up"
 		end
 	end
+
+	redef fun is_down do return down
 end
 
 class SDLQuitEvent
@@ -305,7 +306,7 @@ redef class Int
 	`}
 end
 
-extern Font as `{TTF_Font *`}
+extern SDLFont as `{TTF_Font *`}
 special Pointer
 	new ( name : String, points : Int ) is extern import String::to_cstring `{
 	char * cname = String_to_cstring( name );
