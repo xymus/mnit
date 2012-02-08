@@ -6,11 +6,19 @@ class Hole
 	var game : Game
 	var x : Int
 	var y : Int
-	var dim : Int = 128
+	var dim : Int # Should it be removed?
 
 	# state
 	var up : Bool = false
 	var hitted : Bool = false
+
+	init ( g : Game, x, y : Int )
+	do
+		game = g
+		self.x = x
+		self.y = y
+		dim = game.img_dim
+	end
 
 	fun do_turn
 	do
@@ -64,9 +72,14 @@ class Game
 	var points : Int = 0
 	var speed_modifier : Float = 1.0
 
+	# configs
+	var img_ori_dim : Int = 256
+	var img_dim : Int = 210
+	var global_speed_modifier : Float = 2.0
+
 	init
 	do
-		var d = 128
+		var d = img_dim
 		for x in [ 0 .. rows [ do
 			for y in [ 0 .. columns [ do
 				holes.add( new Hole( self, x*d, y*d ) )
@@ -77,7 +90,7 @@ class Game
 	fun do_turn do
 		for hole in holes do hole.do_turn
 
-		speed_modifier = modifier_half_life / (modifier_half_life+points.to_f)
+		speed_modifier = modifier_half_life / (modifier_half_life+points.to_f) * global_speed_modifier
 
 		print "p: {points} sm: {speed_modifier}"
 	end
@@ -97,9 +110,10 @@ class Screen
 		up_img = app.load_asset( "images/up.png" ).as(Image)
 		hit_img = app.load_asset( "images/hit.png" ).as(Image)
 
-		empty_img.scale = 0.5
-		up_img.scale = 0.5
-		hit_img.scale = 0.5
+		var scale = game.img_dim.to_f / game.img_ori_dim.to_f
+		empty_img.scale = scale
+		up_img.scale = scale
+		hit_img.scale = scale
 	end
 
 	fun do_frame( display : Display )
