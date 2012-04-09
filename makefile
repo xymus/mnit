@@ -2,16 +2,7 @@ MNIT_DIR=$(PWD)
 
 default: tests
 
-mnit:
-	nits -i src/mnit/*.nit
-
-linux: mnit
-	nits -I src/ -i src/linux/*.nit
-
-android: mnit
-	nits -I src/ -i src/android/*.nit
-
-tests: linux android
+tests:
 	make -C tests/simple
 	make -C tests/moles
 
