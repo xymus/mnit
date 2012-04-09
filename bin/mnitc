@@ -1,6 +1,8 @@
 #!/bin/sh
 
-NITC=nitc
+NIT_DIR=$MNIT_DIR/nit
+NITC=$NIT_DIR/bin/nitc
+
 #MNIT_DIR=/home/xymus/projects/mnit/
 
 # load configs

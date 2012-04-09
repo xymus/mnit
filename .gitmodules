@@ -1,3 +1,6 @@
 [submodule "targets/android/lib/libpng"]
 	path = targets/android/lib/libpng
 	url = https://github.com/julienr/libpng-android.git
+[submodule "nit"]
+	path = nit
+	url = https://github.com/xymus/nit.git
