@@ -51,6 +51,7 @@ interface Drawable
 	fun blit( image : I, x, y : Int ) is abstract
 	fun blit_centered( image : I, x, y : Int ) is abstract
 	fun blit_rotated( image : I, x, y, angle : Float ) is abstract
+	fun blit_rotated_scaled( image : I, x, y, angle, scale : Float ) is abstract
 	fun blit_stretched( image : I, ax, ay, bx, by, cx, cy, dx, dy : Float )
 		is abstract
 end
