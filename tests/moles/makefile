@@ -8,4 +8,4 @@ android:
 	mnitc -t android -i src/moles_android.nit
 
 clean:
-	rm bin obj
+	rm -r bin obj
