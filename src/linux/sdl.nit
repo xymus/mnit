@@ -293,6 +293,11 @@ class SDLKeyEvent
 	end
 
 	redef fun is_down do return down
+
+	redef fun is_arrow_up do return key_name == "up"
+	redef fun is_arrow_left do return key_name == "left"
+	redef fun is_arrow_down do return key_name == "down"
+	redef fun is_arrow_right do return key_name == "right"
 end
 
 class SDLQuitEvent

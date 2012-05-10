@@ -47,6 +47,11 @@ interface KeyEvent
 	fun is_down : Bool is abstract
 	fun is_up : Bool is abstract
 
+	fun is_arrow_up : Bool is abstract
+	fun is_arrow_left : Bool is abstract
+	fun is_arrow_down : Bool is abstract
+	fun is_arrow_right : Bool is abstract
+
 	fun code : Int is abstract
 	fun to_c : nullable Char is abstract
 end
