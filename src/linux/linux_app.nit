@@ -4,7 +4,7 @@ import mnit
 import sdl
 import linux_opengles1
 
-`{
+in "C" `{
 #include <EGL/egl.h>
 `}
 

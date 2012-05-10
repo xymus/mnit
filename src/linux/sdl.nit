@@ -4,7 +4,7 @@ import mnit # for
 #import display
 #import input_events
 
-import `{
+in "C header" `{
 #include <unistd.h>
 #include <SDL/SDL.h>
 #include <SDL/SDL_syswm.h>
@@ -13,7 +13,7 @@ import `{
 #define DEBUG 1
 `}
 
-extern SDLDisplay as `{SDL_Surface *`}
+extern SDLDisplay in "C" `{SDL_Surface *`}
 	super Display
 
 	redef type I : SDLImage
@@ -121,7 +121,7 @@ extern SDLDisplay as `{SDL_Surface *`}
 	`}
 end
 
-extern SDLDrawable as `{SDL_Surface*`}
+extern SDLDrawable in "C" `{SDL_Surface*`}
 	super Drawable
 
 	redef type I : SDLImage
@@ -144,7 +144,7 @@ extern SDLDrawable as `{SDL_Surface*`}
 	end
 end
 
-extern SDLImage # as `{SDL_Surface*`}
+extern SDLImage in "C" `{SDL_Surface*`} # TODO remove
 	super DrawableImage
 	super SDLDrawable
 
@@ -174,8 +174,8 @@ extern SDLImage # as `{SDL_Surface*`}
 	return new_image;
 	`}
 	
-	fun save_to_file( path : String ) is extern import String::to_cstring
-	fun clear( c : Float ) is extern
+	fun save_to_file( path : String ) is extern import String::to_cstring `{ `}
+	fun clear( c : Float ) is extern `{ `}
 	
 	redef fun destroy is extern `{
 	SDL_FreeSurface( recv );
@@ -191,7 +191,7 @@ extern SDLImage # as `{SDL_Surface*`}
 	fun is_ok : Bool do return true # TODO
 end
 
-extern SDLRectangle as `{SDL_Rect*`}
+extern SDLRectangle in "C" `{SDL_Rect*`}
 	new ( x : Int, y : Int, w : Int, h : Int ) is extern `{
 	SDL_Rect *rect = malloc( sizeof( SDL_Rect ) );
 	rect->x = (Sint16)x;
@@ -229,7 +229,7 @@ extern SDLRectangle as `{SDL_Rect*`}
 	return recv->h;
 	`}
 	
-	fun destroy is extern
+	fun destroy is extern `{ `}
 end
 
 interface SDLInputEvent
@@ -306,7 +306,7 @@ redef class Int
 	`}
 end
 
-extern SDLFont as `{TTF_Font *`}
+extern SDLFont in "C" `{TTF_Font *`}
 special Pointer
 	new ( name : String, points : Int ) is extern import String::to_cstring `{
 	char * cname = String_to_cstring( name );

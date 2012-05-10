@@ -1,6 +1,6 @@
 import mnit
 
-`{
+in "C" `{
 #include <mnit_log.h>
 #include <android_native_app_glue.h>
 

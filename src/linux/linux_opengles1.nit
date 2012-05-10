@@ -3,12 +3,12 @@ module linux_opengles1
 import mnit
 import sdl
 
-import `{
-#include "sdl.nit.h"
+in "C header" `{
+//#include "sdl.nit.h"
 // #include "EGL/egl.h"
 `}
 
-`{
+in "C" `{
 #include <mnit_log.h>
 
 NativeWindowType mnit_window;
@@ -17,7 +17,7 @@ EGLNativeDisplayType mnit_native_display;
 SDL_Surface* mnit_sdl_surface;
 `}
 
-redef class Opengles1Display # as `{struct mnit_opengles_Texture *`}
+redef class Opengles1Display # in "C" `{struct mnit_opengles_Texture *`}
 
 	# display managing the window, events, fonts? and image loading?
 	var sdl_display : SDLDisplay

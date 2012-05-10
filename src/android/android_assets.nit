@@ -1,13 +1,13 @@
 import mnit
 import android_app
 
-import `{
+in "C header" `{
 #include <png.h>
 #include <zlib.h>
 #include <mnit_log.h>
 `}
 
-`{
+in "C" `{
 extern struct android_app *mnit_java_app;
 
 void mnit_android_png_read_data(png_structp png_ptr,
@@ -28,7 +28,7 @@ void mnit_android_png_warning_fn(png_structp png_ptr,
 }
 `}
 
-extern AndroidAsset as `{struct AAsset*`}
+extern AndroidAsset in "C" `{struct AAsset*`}
 
 	fun read( count : Int ) : nullable String is extern import String as nullable, String::from_cstring `{
 		char *buffer = malloc( sizeof(char) * (count+1) );

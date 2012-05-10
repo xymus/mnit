@@ -1,7 +1,8 @@
 module opengles1
 
 import display
-import `{
+
+in "C header" `{
 #include <EGL/egl.h>
 #include <GLES/gl.h>
 #include <GLES/glext.h>
@@ -47,7 +48,7 @@ GLenum mnit_opengles_error_code;
 struct mnit_opengles_Texture *mnit_opengles_load_image( const uint_least32_t *pixels, int width, int height, int has_alpha );
 `}
 
-`{
+in "C" `{
 #include <mnit_log.h>
 
 extern NativeWindowType mnit_window;
@@ -429,7 +430,7 @@ GLfloat mnit_opengles_vertices_stretched[6][3] =
 	`}
 end
 
-extern Opengles1Image as `{struct mnit_opengles_Texture *`}
+extern Opengles1Image in "C" `{struct mnit_opengles_Texture *`}
 	super Image
     
     redef fun destroy is extern `{
@@ -479,7 +480,7 @@ extern Opengles1Image as `{struct mnit_opengles_Texture *`}
 end
 
 
-extern Opengles1DrawableImage as `{struct mnit_opengles_DrawableTexture*`}
+extern Opengles1DrawableImage in "C" `{struct mnit_opengles_DrawableTexture*`}
 	super DrawableImage
     new ( w, h : Int ) is extern `{
 	struct mnit_opengles_DrawableTexture *image = 

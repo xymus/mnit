@@ -2,14 +2,14 @@ module android_app
 
 import android_opengles1
 
-import `{
+in "C header" `{
 #include <jni.h>
 #include <errno.h>
 #include <android/log.h>
 #include <android_native_app_glue.h>
 `}
 
-`{
+in "C" `{
 #include <mnit_log.h>
 
 int mnit_orientation_changed;
@@ -197,7 +197,7 @@ void mnit_frame()
 `}
 
 
-extern InnerAndroidMotionEvent as `{AInputEvent *`}
+extern InnerAndroidMotionEvent in "C" `{AInputEvent *`}
 	super Pointer
 	private fun pointers_count : Int is extern `{ 
 	return AMotionEvent_getPointerCount( recv );
@@ -284,7 +284,7 @@ class AndroidPointerEvent
 	redef fun down do return true
 end
 
-extern AndroidKeyEvent as `{AInputEvent *`}
+extern AndroidKeyEvent in "C" `{AInputEvent *`}
 	super KeyEvent
 	super AndroidInputEvent
 
