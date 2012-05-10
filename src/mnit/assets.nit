@@ -3,6 +3,7 @@ module assets
 
 import app
 import display
+import font
 
 # General asset
 interface Asset
@@ -27,7 +28,6 @@ redef class App
 		var asset = try_loading_asset( id )
 		if asset == null then # error
 			log_error( "asset <{id}> could not be loaded." )
-			exit(1)
 			abort
 		else
 			return asset
@@ -43,7 +43,17 @@ redef class App
 			return asset
 		else
 			log_error( "asset <{id}> is not an image." )
-			exit(1)
+			abort
+		end
+	end
+
+	fun load_font( id : String ) : Font
+	do
+		var asset = load_asset( id )
+		if asset isa Font then
+			return asset
+		else
+			log_error( "asset <{id}> is not a font." )
 			abort
 		end
 	end
