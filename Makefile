@@ -1,6 +1,6 @@
 MNIT_DIR=$(PWD)
 
-default: tests-linux
+default: tests-linux doc
 
 nit:
 	make -C nit
