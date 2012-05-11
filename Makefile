@@ -1,10 +1,14 @@
 MNIT_DIR=$(PWD)
 
-default: tests
+default: tests-linux
 
-tests:
-	make -C tests/simple
-	make -C tests/moles
+tests-linux:
+	make -C tests/simple linux
+	make -C tests/moles linux
+
+tests-android:
+	make -C tests/simple android
+	make -C tests/moles android
 
 doc:
 	nitdoc --log -d doc/mnit --log-dir doc/log/mnit src/mnit/mnit.nit
