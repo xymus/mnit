@@ -1,5 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
+if [ "${MNIT_DIR}" == "" ]; then
+	MNIT_DIR="`dirname $0`/.."
+fi
 NIT_DIR=$MNIT_DIR/nit
 NITC=$NIT_DIR/bin/nitc
 

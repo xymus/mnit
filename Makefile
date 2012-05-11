@@ -14,6 +14,6 @@ tests-android: nit
 	make -C tests/moles android
 
 doc: nit
-	nitdoc -I src src/linux/linux.nit src/android/android.nit
+	nit/bin/nitdoc -I src src/linux/linux.nit src/android/android.nit
 
 .PHONY: doc nit
