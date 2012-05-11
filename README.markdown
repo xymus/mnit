@@ -4,7 +4,7 @@ The project MNit is a framework for cross-platform application development. As o
 
 # Requirements
 
-Make sure you have all developpment libraries for the Nit system and your target platform. On Debian like systems, to begin you need you need the packages: git-core build-essential graphiz. For Linux compilation: libgles1-mesa-dev libsdl1.2-dev libsdl-image1.2-dev. For Android, you must install the Android SDK and NDK.
+Make sure you have all development libraries for the Nit system and your target platform. On Debian like systems, to begin you need you need the packages: git-core build-essential graphiz. For Linux compilation: libgles1-mesa-dev libsdl1.2-dev libsdl-image1.2-dev. For Android, you must install the Android SDK and NDK.
 
 # Installation
 
@@ -12,9 +12,9 @@ Clone the repository anywhere, cd in the repository and run make to compile the 
 
 # Project
 
-A project using MNit must implement a sub-class of MNit::App (see tests for samples) and define a module for each platform. Each custom platform specific module may be very light as it only needs to import the main project and the platform specific module from MNit. However, they can be extended to customize the application behaviour on different platforms.
+A project using MNit must implement a sub-class of mnit::App (see tests for samples) and define a module for each platform. Each custom platform specific module may be very light as it only needs to import the main project and the platform specific module from MNit. However, they can be extended to customize the application behaviour on different platforms.
 
-To compile, call MNitc specifying the target platform with the -t argument.
+To compile, call mnitc specifying the target platform with the -t argument.
 
     mnitc -t linux src/moles_linux.nit
     mnitc -t android src/moles_android.nit
