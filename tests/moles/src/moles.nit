@@ -74,8 +74,8 @@ class Game
 
 	# configs
 	var img_ori_dim : Int = 256
-	var img_dim : Int = 210
-	var global_speed_modifier : Float = 2.0
+	fun img_dim : Int do return 210
+	fun global_speed_modifier : Float do return 2.0
 
 	init
 	do
