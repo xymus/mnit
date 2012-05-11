@@ -2,8 +2,12 @@ MNIT_DIR=$(PWD)
 
 default: tests-linux doc
 
-nit:
+nit: nit/Makefile
+	git submodule update -f nit
 	make -C nit
+
+nit/Makefile:
+	git submodule update --init nit
 
 tests-linux: nit
 	make -C tests/simple linux
