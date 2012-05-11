@@ -313,7 +313,7 @@ extern AndroidKeyEvent in "C" `{AInputEvent *`}
 end
 
 redef class Object
-	# uses android logs for every print
+	# Uses android logs for every print
 	redef fun print( text : Object ) is extern import Object::to_s, String::to_cstring `{
 	__android_log_print(ANDROID_LOG_INFO, "mnit print", "%s", String_to_cstring( Object_to_s( text ) ) );
 	`}

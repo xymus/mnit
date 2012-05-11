@@ -1,3 +1,4 @@
+# SDL display support (used in Linux for windows and inputes only)
 module sdl
 
 import mnit # for

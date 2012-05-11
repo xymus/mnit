@@ -19,50 +19,72 @@ module display
 
 import input_events
 
+# Any class with a size
 interface Sized
 	fun width : Int is abstract
 	fun height : Int is abstract
 end
 
+# General image class, will be specialized for each classes
 interface Image
 	super Sized
 	fun destroy is abstract
 
 	#var scale : Float is abstract
-	# scale this image when blit
+	# Scale this image when blit
 	fun scale : Float is abstract
 	fun scale=( v : Float ) is abstract
 
 	#var blended : Bool is abstract
-	# use blending on this image?
+	# Use blending on this image?
 	fun blended : Bool is abstract
 	fun blended=( v : Bool ) is abstract
 
+	# Get another image from this one
 	fun subimage( x, y, w, h : Int ) : Image is abstract
 end
 
+# General class for everything drawable to
+# Is used by drawable images and display
 interface Drawable
 	type I : Image
 
+	# Call to prepare for drawing
 	fun begin is abstract
+
+	# Call when drawing is finished
 	fun finish is abstract
+
+	# Set viewport for drawing
 	fun set_viewport( x, y, w, h : Int ) is abstract
 
+	# Draw image on self, for top left position
 	fun blit( image : I, x, y : Int ) is abstract
+
+	# Draw image, centered at position
 	fun blit_centered( image : I, x, y : Int ) is abstract
+
+	# Draw image, centered at position but rotated
 	fun blit_rotated( image : I, x, y, angle : Float ) is abstract
+
+	# Draw image, centered, rotated and scaled
 	fun blit_rotated_scaled( image : I, x, y, angle, scale : Float ) is abstract
+
+	# Draw image by specifying the positon of each image corners
 	fun blit_stretched( image : I, ax, ay, bx, by, cx, cy, dx, dy : Float )
 		is abstract
 end
 
+# General display class, is sized and drawable
 interface Display
 	super Sized
 	super Drawable
 
+	# InputEvent type associated to this display type
 	type IE : InputEvent
 end
 
+# General drawable display image
 interface DrawableImage
 	super Drawable
 	super Image

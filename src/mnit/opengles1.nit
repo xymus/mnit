@@ -1,3 +1,4 @@
+# OpenGL ES1 general support (most of it)
 module opengles1
 
 import display
@@ -125,7 +126,8 @@ struct mnit_opengles_Texture *mnit_opengles_load_image( const uint_least32_t *pi
 }
 `}
 
-
+# OpenGL ES1 display
+# Uses 3d hardware optimization
 class Opengles1Display
 	super Display
 	
