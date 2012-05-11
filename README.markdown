@@ -19,6 +19,12 @@ To compile, call mnitc specifying the target platform with the -t argument.
     mnitc -t linux src/moles_linux.nit
     mnitc -t android src/moles_android.nit
 
+## Quick start
+
+To begin a new project using MNit, you can use the tool mnit-new-project. It will generate the basic folder structure and stub files for you. Example call:
+
+	mnit-new-project your_project_name org.your_java_domain
+
 ## Assets
 
 All assets of the project must be in the assets/ directory. Within it you can organize it the way you want.

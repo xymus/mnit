@@ -1,0 +1,141 @@
+#!/usr/bin/env bash
+
+script_name=`basename $0`
+if [ $# != 2 ]; then
+	echo "Usage: $script_name project_name java_package"
+	echo ""
+	echo "Example: $script_name my_project com.example"
+	echo ""
+	echo "Options:"
+	echo "	project_name: must be all lowercases and _, no spaces"
+	echo "	java_package: standard java package for Android"
+	exit 1
+fi
+
+project=$1
+package=$2
+project_linux=${project}_linux
+project_android=${project}_android
+full_package=$2.$1
+full_package_debug=$2.$1-debug
+
+if [ -e "$project" ]; then
+	echo "Directory $project already exists, quitting."
+	exit 1
+fi
+
+mkdir $project
+cd $project
+
+## project file
+cat > project_config <<EOF
+project_name=$project
+project_version=0.1
+
+# android
+android_app_name=$project
+android_pkg_name=$full_package
+android_apk_name=$project
+
+# linux
+linux_bin_name=$project
+EOF
+
+## makefile
+cat > Makefile <<EOF
+linux:
+	mkdir -p bin
+	mnitc -t linux src/$project_linux.nit
+
+android:
+	mnitc -t android -i src/$project_android.nit
+EOF
+
+## prepare assets dir
+mkdir assets
+
+## Nit source directory
+mkdir src
+cd src
+
+# create common src file
+cat > $project.nit <<EOF
+module $project
+
+import mnit
+
+class MyApp
+	super App
+
+	init do super
+
+	redef fun init_window
+	do
+		super
+
+		# TODO load assets here
+		# ex: img = app.load_image( "img.png" )
+		#     to get file located at assets/img.png before deployement
+	end
+
+	redef fun frame_core( display )
+	# the arg display is not null but otherwise the same than self.display
+	do
+		# TODO all drawing and game logic here
+		# display.blit( img, x, y )
+	end
+
+	redef fun input( input_event )
+	do
+		if input_event isa QuitEvent then # close window button
+			quit = true # orders system to quit
+			return true # this event has been handled
+
+		# TODO handled game input event
+		# ex: else if input_event isa KeyEvent and
+		#		input_event.is_arrow_right then
+
+		else
+			return false # unknown event, can be handled by something else
+		end
+	end
+end
+
+var app = new MyApp
+app.main_loop
+EOF
+
+# create linux source file
+cat > $project_linux.nit <<EOF
+module $project_linux
+
+import $project
+import linux
+
+super
+EOF
+
+# create android source file
+cat > $project_android.nit <<EOF
+module $project_android
+
+import $project
+import android
+
+redef class MyApp
+	# auto: accept linearisation conflict
+	redef fun init_window do super
+end
+
+super
+EOF
+
+cat <<EOF
+Project $project ready!
+
+Make sure the environment variable MNIT_DIR is set
+to the root directory on the MNit system repository.
+
+Sources files are in $project/src and to compile run:
+cd $project; make linux; make android
+EOF
