@@ -426,7 +426,12 @@ GLfloat mnit_opengles_vertices_stretched[6][3] =
 	}
 	`}
 
-	fun clear( r, g, b, a : Float ) is extern `{
+	redef fun clear( r, g, b : Float ) is extern `{
+	glClearColor( r, g, b, 1.0 );
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	`}
+
+	fun clear_alpha( r, g, b, a : Float ) is extern `{
 	glClearColor( r, g, b, a );
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	`}

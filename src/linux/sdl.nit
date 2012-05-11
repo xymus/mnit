@@ -45,7 +45,7 @@ extern SDLDisplay in "C" `{SDL_Surface *`}
 	SDL_Flip( recv );
 	`}
 
-	fun clear( r, g, b : Int ) is extern `{
+	fun clear_int( r, g, b : Int ) is extern `{
 	SDL_FillRect( recv, NULL, SDL_MapRGB(recv->format,r,g,b) ); 
 	`}
 	
@@ -58,6 +58,14 @@ extern SDLDisplay in "C" `{SDL_Surface *`}
 	
 	fun fill_rect( rect : SDLRectangle, r, g, b : Int ) is extern `{
 	SDL_FillRect( recv, rect,  SDL_MapRGB(recv->format,r,g,b) );
+	`}
+
+	redef fun clear( r, g, b : Float ) is extern `{
+	Uint8 ri, gi, bi;
+	ri = (Uint8)r*255;
+	gi = (Uint8)g*255;
+	bi = (Uint8)b*255;
+	SDL_FillRect( recv, NULL, SDL_MapRGB(recv->format,ri,gi,bi) );
 	`}
 	
 	fun events : Sequence[ IE ]
@@ -176,7 +184,6 @@ extern SDLImage in "C" `{SDL_Surface*`} # TODO remove
 	`}
 	
 	fun save_to_file( path : String ) is extern import String::to_cstring `{ `}
-	fun clear( c : Float ) is extern `{ `}
 	
 	redef fun destroy is extern `{
 	SDL_FreeSurface( recv );

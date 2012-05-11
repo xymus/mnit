@@ -118,9 +118,7 @@ class Screen
 
 	fun do_frame( display : Display )
 	do
-		if display isa Opengles1Display then
-			display.clear( 0.0, 0.7, 0.0, 1.0 )
-		end
+		display.clear( 0.0, 0.7, 0.0 )
 
 		for hole in game.holes do
 			var img

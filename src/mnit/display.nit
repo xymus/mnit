@@ -73,6 +73,9 @@ interface Drawable
 	# Draw image by specifying the positon of each image corners
 	fun blit_stretched( image : I, ax, ay, bx, by, cx, cy, dx, dy : Float )
 		is abstract
+
+	# Clear entire window with given color
+	fun clear( r, g, b : Float ) is abstract
 end
 
 # General display class, is sized and drawable
