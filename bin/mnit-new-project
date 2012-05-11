@@ -14,8 +14,8 @@ fi
 
 project=$1
 package=$2
-project_linux=${project}_linux
-project_android=${project}_android
+project_linux=linux_${project}
+project_android=android_${project}
 full_package=$2.$1
 full_package_debug=$2.$1-debug
 
@@ -45,7 +45,7 @@ EOF
 cat > Makefile <<EOF
 linux:
 	mkdir -p bin
-	mnitc -t linux src/$project_linux.nit
+	mnitc -t linux -o bin/$project src/$project_linux.nit
 
 android:
 	mnitc -t android -i src/$project_android.nit
@@ -74,7 +74,7 @@ class MyApp
 		super
 
 		# TODO load assets here
-		# ex: img = app.load_image( "img.png" )
+		# ex: img = load_image( "img.png" )
 		#     to get file located at assets/img.png before deployement
 	end
 
@@ -82,6 +82,7 @@ class MyApp
 	# the arg display is not null but otherwise the same than self.display
 	do
 		# TODO all drawing and game logic here
+		# display.clear( 0.0, 0.5, 0.0 )
 		# display.blit( img, x, y )
 	end
 
