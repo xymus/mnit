@@ -27,6 +27,10 @@ struct mnit_opengles_Texture {
 	
 	/* destination width and height */
 	int width, height;
+
+	/* may vary depending on scaling */
+	int center_x, center_y;
+
 	float scale;
 	int blended;
 };
@@ -83,6 +87,8 @@ struct mnit_opengles_Texture *mnit_opengles_load_image( const uint_least32_t *pi
 	
 	image->width = width;
 	image->height = height;
+	image->center_x = width/2;
+	image->center_y = height/2;
 	image->scale = 1.0f;
 	image->blended = has_alpha;
 
@@ -317,8 +323,8 @@ class Opengles1Display
 	
     redef fun blit_centered( img, x, y )
     do
-    	x = x - img.width / 2
-    	y = y - img.height / 2
+    	x = x - img.center_x
+    	y = y - img.center_y
     	blit( img, x, y )
     end
     
@@ -452,8 +458,18 @@ extern Opengles1Image in "C" `{struct mnit_opengles_Texture *`}
     return recv->height;
     `}
 
+	fun center_x : Int `{
+	return recv->center_x;
+	`}
+
+	fun center_y : Int `{
+	return recv->center_y;
+	`}
+
     redef fun scale=( v : Float ) is extern `{
     recv->scale = v;
+	recv->center_x = v*recv->width/2;
+	recv->center_y = v*recv->height/2;
     `}
     redef fun scale : Float is extern `{
     return recv->scale;
@@ -474,6 +490,8 @@ extern Opengles1Image in "C" `{struct mnit_opengles_Texture *`}
 	image->texture = recv->texture;
 	image->width = w;
 	image->height = h;
+	image->center_x = recv->scale*w/2;
+	image->center_y = recv->scale*h/2;
 	image->scale = recv->scale;
 	image->blended = recv->blended;
 
@@ -510,6 +528,8 @@ extern Opengles1DrawableImage in "C" `{struct mnit_opengles_DrawableTexture*`}
     
     image->width = w;
     image->height = h;
+	image->center_x = w/2;
+	image->center_y = h/2;
     eglMakeCurrent( andronit.display,
                     surface,
                     surface,
@@ -568,6 +588,8 @@ extern Opengles1DrawableImage in "C" `{struct mnit_opengles_DrawableTexture*`}
 
 	image->super.width = w;
 	image->super.height = h;
+	image->super.center_x = w/2;
+	image->super.center_y = h/2;
 	image->super.scale = 1.0f;
 	image->super.blended = 0;
 
