@@ -4,7 +4,7 @@ The project MNit is a framework for cross-platform application development. As o
 
 # Requirements
 
-Make sure you have all development libraries for the Nit system and your target platform. On Debian like systems, to begin you need you need the packages: git-core build-essential graphiz. For Linux compilation: libgles1-mesa-dev libsdl1.2-dev libsdl-image1.2-dev. For Android, you must install the Android SDK and NDK.
+Make sure you have all development libraries for the Nit system and your target platform. On Debian like systems, to begin you need you need the packages: git-core build-essential graphiz. For Linux compilation: libgles1-mesa-dev libsdl1.2-dev libsdl-image1.2-dev libsdl-ttf2.0-dev. For Android, you must install the Android SDK and NDK.
 
 # Installation
 
