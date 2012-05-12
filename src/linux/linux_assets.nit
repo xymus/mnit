@@ -10,7 +10,7 @@ redef class App
 	do
 		print "mnit assets linux"
 
-		assets_dir =  "PWD".to_symbol.environ + "/bin/assets/"
+		assets_dir = sys.program_name.dirname + "/assets/"
 
 		super
 		print "mnit assets linux one"
