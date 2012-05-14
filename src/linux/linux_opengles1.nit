@@ -23,7 +23,7 @@ redef class Opengles1Display # in "C" `{struct mnit_opengles_Texture *`}
 	var sdl_display : SDLDisplay
 
 	redef fun extern_init do
-		sdl_display = new SDLDisplay( 640, 480 )
+		sdl_display = new SDLDisplay( 800, 600 )
 		init_from_sdl( sdl_display )
 		return super
 	end
