@@ -36,3 +36,9 @@ The tests directory contains two examples using MNit. Both can be compiled for L
 The test _simple_ is limited to the most basic use of the system. It can be used to test inputs and assets.
 
 The test _moles_ is a simple game which uses the assets to load images. It is a better example for a real game.
+
+## Tools
+
+The _bin_ directory contains a few more programs than mnitc to simplify the use of the MNit system.
+
+The _mnit-android-trace_ is a small wrapper to ndk-stack to simplify debuging MNit application on Android. It must be called from the root of your MNit project. It wields results if there is a native crash in your Android application. It doesn't report Nit crash or native crash in system librairies.
