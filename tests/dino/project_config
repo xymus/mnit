@@ -1,0 +1,10 @@
+project_name=dino
+project_version=0.1
+
+# android
+android_app_name=dino
+android_pkg_name=net.xymus.dino
+android_apk_name=dino
+
+# linux
+linux_bin_name=dino

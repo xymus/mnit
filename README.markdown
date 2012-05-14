@@ -35,7 +35,9 @@ The tests directory contains two examples using MNit. Both can be compiled for L
 
 The test _simple_ is limited to the most basic use of the system. It can be used to test inputs and assets.
 
-The test _moles_ is a simple game which uses the assets to load images. It is a better example for a real game.
+The simple game _moles_ uses the assets to load images. It has a more complete game logic but still defined in a signle module.
+
+The game _dino_ is an example of a more complete game. The application logic is devided in modules by preoccupations. It uses some more advanced features of the display interfaces, to display the turning dino.
 
 ## Tools
 

@@ -12,10 +12,12 @@ nit/Makefile:
 tests-linux: nit
 	make -C tests/simple linux
 	make -C tests/moles linux
+	make -C tests/dino linux
 
 tests-android: nit
 	make -C tests/simple android
 	make -C tests/moles android
+	make -C tests/dino android
 
 doc: nit
 	nit/bin/nitdoc -I src src/linux/linux.nit src/android/android.nit
