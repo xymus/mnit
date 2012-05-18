@@ -71,6 +71,8 @@ interface Drawable
 	fun blit_rotated_scaled( image : I, x, y, angle, scale : Float ) is abstract
 
 	# Draw image by specifying the positon of each image corners
+	# Corners are in clockwise order stating top right
+	# a is top right, b is bottom right, c is bottom left and d is top left
 	fun blit_stretched( image : I, ax, ay, bx, by, cx, cy, dx, dy : Float )
 		is abstract
 
