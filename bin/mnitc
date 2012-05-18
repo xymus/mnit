@@ -64,7 +64,7 @@ if [ "$n" = "true" ]; then
 	echo $NITC $OPTS $@
 else
 	$NITC $OPTS $@
-	if [ ! $? ]; then
+	if [ $? != 0 ]; then
 		echo FAILED: $NITC $OPTS $@
 		exit 1
 	fi
