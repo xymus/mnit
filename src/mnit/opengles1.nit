@@ -6,6 +6,7 @@ import display
 in "C header" `{
 #include <EGL/egl.h>
 #include <GLES/gl.h>
+#define GL_GLEXT_PROTOTYPES 1
 #include <GLES/glext.h>
 #include <errno.h>
 
