@@ -3,11 +3,6 @@ module linux_opengles1
 import mnit
 import sdl
 
-in "C header" `{
-//#include "sdl.nit.h"
-// #include "EGL/egl.h"
-`}
-
 in "C" `{
 #include <mnit_log.h>
 
@@ -34,7 +29,7 @@ redef class Opengles1Display # in "C" `{struct mnit_opengles_Texture *`}
 
 	mnit_window = (NativeWindowType)XOpenDisplay(NULL);
 	mnit_native_display = (EGLNativeDisplayType)mnit_window;
- 
+
 	if (!mnit_window)
 	{
 		fprintf(stderr, "ERROR: unable to get display!n");

@@ -49,8 +49,6 @@ struct mnit_opengles_DrawableTexture {
 
 GLenum mnit_opengles_error_code;
 
-/* #include <android._nitni.h> */
-
 struct mnit_opengles_Texture *mnit_opengles_load_image( const uint_least32_t *pixels, int width, int height, int has_alpha );
 `}
 
@@ -84,8 +82,6 @@ struct mnit_opengles_Texture *mnit_opengles_load_image( const uint_least32_t *pi
 	struct mnit_opengles_Texture *image = malloc(sizeof(struct mnit_opengles_Texture));
 	int format = has_alpha? GL_RGBA : GL_RGB;
 
-	LOGI( "load_image" );
-	
 	image->width = width;
 	image->height = height;
 	image->center_x = width/2;
@@ -157,7 +153,6 @@ class Opengles1Display
 	EGLSurface surface;
 	EGLContext context;
 
-//	EGLDisplay display = eglGetDisplay(EGL_DEFAULT_DISPLAY);	for android
 	EGLDisplay display = eglGetDisplay(mnit_native_display);
 	if ( display == EGL_NO_DISPLAY) {
 		LOGW("Unable to eglGetDisplay");
@@ -237,12 +232,9 @@ class Opengles1Display
 		}
 		eglTerminate( mnit_display);
 	}
-	 /*mnit_mnit_animating = 0;*/
 	 mnit_display = EGL_NO_DISPLAY;
 	 mnit_context = EGL_NO_CONTEXT;
 	 mnit_surface = EGL_NO_SURFACE;
-
-	LOGW( "termed!" );
 	`}
 	
 	redef fun begin is extern `{
@@ -393,16 +385,16 @@ class Opengles1Display
 		{image->src_xi, image->src_yo}
 	};
 
-GLfloat mnit_opengles_vertices_stretched[6][3] =
-{
-	{ax, ay, 0.0f},
-	{bx, by, 0.0f},
-	{cx, cy, 0.0f},
-	{ax, ay, 0.0f},
-	{cx, cy, 0.0f},
-	{dx, dy, 0.0f},
-};
-    
+	GLfloat mnit_opengles_vertices_stretched[6][3] =
+	{
+		{ax, ay, 0.0f},
+		{bx, by, 0.0f},
+		{cx, cy, 0.0f},
+		{ax, ay, 0.0f},
+		{cx, cy, 0.0f},
+		{dx, dy, 0.0f},
+	};
+
 	glLoadIdentity();
 
 	glBindTexture(GL_TEXTURE_2D, image->texture);
