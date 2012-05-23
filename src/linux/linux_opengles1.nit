@@ -12,13 +12,18 @@ EGLNativeDisplayType mnit_native_display;
 SDL_Surface* mnit_sdl_surface;
 `}
 
+redef class Display
+	fun wanted_width : Int do return 800
+	fun wanted_height : Int do return 600
+end
+
 redef class Opengles1Display # in "C" `{struct mnit_opengles_Texture *`}
 
 	# display managing the window, events, fonts? and image loading?
 	var sdl_display : SDLDisplay
 
 	redef fun extern_init do
-		sdl_display = new SDLDisplay( 800, 600 )
+		sdl_display = new SDLDisplay( wanted_width, wanted_height )
 		init_from_sdl( sdl_display )
 		return super
 	end
@@ -48,6 +53,13 @@ redef class Opengles1Display # in "C" `{struct mnit_opengles_Texture *`}
 
 	return 0;
 	`}
+
+	redef fun close
+	do
+		super
+
+		sdl_display.destroy
+	end
 end
 
 redef extern Opengles1Image
