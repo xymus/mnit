@@ -1,0 +1,10 @@
+project_name=displays
+project_version=0.1
+
+# android
+android_app_name=displays
+android_pkg_name=net.xymus.displays
+android_apk_name=displays
+
+# linux
+linux_bin_name=displays

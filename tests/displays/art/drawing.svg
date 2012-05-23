@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="153.02089"
+   height="78.092064"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.1 r9760"
+   sodipodi:docname="drawing.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="-228.65526"
+     inkscape:cy="42.999334"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1149"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-271.63827,-312.24471)">
+    <g
+       id="0640x480"
+       inkscape:label="#g3773"
+       transform="matrix(0.84667146,0,0,0.84667146,53.381133,53.862897)">
+      <rect
+         rx="5.2304959"
+         ry="5.2304959"
+         y="305.17365"
+         x="257.78256"
+         height="28.020519"
+         width="180.7323"
+         id="rect3767"
+         style="fill:#cccccc;fill-opacity:1;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text2985"
+         y="324.08749"
+         x="263.28723"
+         style="font-size:13.07623959px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="324.08749"
+           x="263.28723"
+           id="tspan2987"
+           sodipodi:role="line">Set resolution to 640x480</tspan></text>
+    </g>
+    <g
+       id="0800x600"
+       inkscape:label="#g3778"
+       transform="matrix(0.27678197,0,0,0.27678197,251.78742,254.0598)">
+      <rect
+         style="fill:#cccccc;fill-opacity:1;stroke:none"
+         id="rect3769"
+         width="552.85712"
+         height="85.714302"
+         x="71.720154"
+         y="306.64789"
+         ry="16"
+         rx="16" />
+      <text
+         xml:space="preserve"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         x="88.558868"
+         y="363.79077"
+         id="text2989"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan2991"
+           x="88.558868"
+           y="363.79077">Set resolution to 800x600</tspan></text>
+    </g>
+    <g
+       id="01280x800"
+       inkscape:label="#g3783"
+       transform="matrix(0.27678197,0,0,0.27678197,251.78742,254.0598)">
+      <rect
+         rx="16"
+         ry="16"
+         y="406.64789"
+         x="71.720154"
+         height="85.714302"
+         width="552.85712"
+         id="rect3771"
+         style="fill:#cccccc;fill-opacity:1;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text2993"
+         y="462.36221"
+         x="75.824493"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="462.36221"
+           x="75.824493"
+           id="tspan2995"
+           sodipodi:role="line">Set resolution to 1280x800</tspan></text>
+    </g>
+  </g>
+</svg>
