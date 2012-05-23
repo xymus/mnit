@@ -271,7 +271,6 @@ class Opengles1Display
 	`}
 	
 	redef fun blit( image, x, y ) is extern  `{
-	y += 32;
 	GLfloat texture_coord[6][2] =
 	{
 		{image->src_xo, image->src_yo},
@@ -322,7 +321,6 @@ class Opengles1Display
     end
     
 	redef fun blit_rotated( image, x, y, angle ) is extern  `{
-	y += 32;
 	GLfloat texture_coord[6][2] =
 	{
 		{image->src_xo, image->src_yo},
@@ -371,10 +369,6 @@ class Opengles1Display
 
 	# a = top left, b = bottom left, c = bottom right, d = top right
 	redef fun blit_stretched( image, ax, ay, bx, by, cx, cy, dx, dy ) is extern  `{
-	ay += 32;
-	by += 32;
-	cy += 32;
-	dy += 32;
 	GLfloat texture_coord[6][2] =
 	{
 		{image->src_xo, image->src_yo},
