@@ -4,3 +4,6 @@
 [submodule "nit"]
 	path = nit
 	url = https://github.com/xymus/nit.git
+[submodule "lib/ftgles"]
+	path = lib/ftgles
+	url = https://github.com/cdave1/ftgles.git
