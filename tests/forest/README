@@ -1,0 +1,6 @@
+Forest simulation with termites and lumberjacks, implemented in Nit with a client/server architecture.
+
+Needs inkscape to generate bitmap images, libsdl1.2-dev and libsdl-image1.2-dev to compile client binary.
+
+This projet uses depricated local libraries, it is not recommmended to reuse them.
+

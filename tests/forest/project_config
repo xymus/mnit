@@ -1,0 +1,10 @@
+project_name=forest
+project_version=0.3
+
+# android
+android_app_name=Forest
+android_pkg_name=net.xymus.forest
+android_apk_name=forest
+
+# linux
+linux_bin_name=forest
