@@ -1,6 +1,7 @@
 import sockets
 import serialize
 import realtime
+import signals
 
 import termites_jack_ex
 import bucket
@@ -146,6 +147,18 @@ class RemoteClient
 	end
 end
 
+class SigintReceiver
+	super SignalHandler
+
+	var sigint_received = false
+
+	init do handle_signal( sigint, true )
+
+	redef fun receive_signal( signal ) do sigint_received = true
+end
+
+var receiver = new SigintReceiver
+
 # opening port and waiting for connection
 var listening_socket = new ListeningSocket.bind_to( address, port )
 
@@ -203,11 +216,17 @@ while not shutdown do
 		client.connection.close
 	end
 
-	# notify if shutting down
-	for client in clients do
-		var b = new Buffer
-		shutdown.dump_to( b )
+	# check for sigint/ctrl-c
+	check_signals
+	if receiver.sigint_received then
+		shutdown = true
+		print "Received sigint, shutting down"
+	end
 
+	# notify if shutting down
+	var b = new Buffer
+	shutdown.dump_to( b )
+	for client in clients do
 		client.connection.write( b.to_s )
 	end
 
