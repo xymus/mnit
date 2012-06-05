@@ -1,7 +1,5 @@
 .nit_compile
 *.nit.o
-*.nit.c
-*.nit.h
 
 *.swp
 *.swo
