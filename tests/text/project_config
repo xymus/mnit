@@ -1,0 +1,10 @@
+project_name=text
+project_version=0.1
+
+# android
+android_app_name=text
+android_pkg_name=net.xymus.text
+android_apk_name=text
+
+# linux
+linux_bin_name=text
