@@ -23,6 +23,7 @@ LOCAL_CFLAGS	:= -I $(NIT_DIR)/clib/ \
 				   -I $(MNIT_DIR)/src/android/ \
 				   -I $(LOCAL_PATH) \
 				   -I $(LOCAL_PATH)/../libpng/ \
+				   -I $(LOCAL_PATH)/../libftgles/ \
 				   -Wall -Wextra -Wformat-security -Wcast-align -Wno-uninitialized -Wno-unused-variable -Wno-unused-label -Wno-unused-parameter -Wno-missing-field-initializers
 
 LOCAL_MODULE    := main

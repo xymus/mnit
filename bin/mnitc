@@ -6,8 +6,6 @@ fi
 NIT_DIR=$MNIT_DIR/nit
 NITC=$NIT_DIR/bin/nitc
 
-#MNIT_DIR=/home/xymus/projects/mnit/
-
 # load configs
 sc(){
 export $1=`cat project_config  | grep -ve "^#" -ve "^$" | grep "$1" | sed "s/.*=//"`
@@ -33,7 +31,7 @@ debug=false
 deploy=false
 n=false
 while [ "$stop" = "false" ]; do
-	case $1 in 
+	case $1 in
 		-t) target=$2; shift; shift;;
 		-i|--install) deploy=true; shift;;
 		-d|--debug) debug=true; shift;;
@@ -45,8 +43,8 @@ done
 
 # pre compilation
 case $target in
-	linux) OPTS="-I ${MNIT_DIR}/src/ --cc-header-path ${MNIT_DIR}/src/linux/";;
-	android) OPTS="-I ${MNIT_DIR}/src/ --cc-header-path ${MNIT_DIR}/src/android/ --no-cc --compdir obj/android/jni/nit_compile"
+	linux) OPTS="-I ${MNIT_DIR}/src/ --cc-header-path ${MNIT_DIR}/src/linux/ --cc-header-path ${MNIT_DIR}/lib/ftgles/ftgles/src/ --cc-header-path /usr/include/freetype2";;
+	android) OPTS="-I ${MNIT_DIR}/src/ --cc-header-path ${MNIT_DIR}/src/android/ --no-cc --compdir obj/android/jni/nit_compile --cc-header-path ${MNIT_DIR}/lib/ftgles/ftgles/src/"
 		PRE_OPTS="$project_name $android_app_name $android_pkg_name $android_apk_name $debug $deploy $project_version"
 		POST_OPTS="$project_name $android_app_name $android_pkg_name $android_apk_name $debug $deploy $project_version";;
 	false) echo No target specified, use -t; usage; exit;;

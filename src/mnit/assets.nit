@@ -19,6 +19,10 @@ redef interface Image
 	super Asset
 end
 
+redef interface Font
+	super Asset
+end
+
 redef class App
 	# Load a genereal asset from file name
 	# Will find the file within the assets/ directory

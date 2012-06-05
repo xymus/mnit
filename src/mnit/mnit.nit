@@ -4,4 +4,5 @@ module mnit
 import app
 import opengles1
 import assets
+import ftgles
 

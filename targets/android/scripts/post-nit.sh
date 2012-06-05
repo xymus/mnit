@@ -16,6 +16,8 @@ cp ${ADIR}/templates/jni/nit_compile/Android.mk jni/nit_compile/Android.mk
 cp ${ADIR}/templates/default.properties default.properties
 
 ln -fs ${ADIR}/lib/libpng/jni jni/libpng
+ln -fs ${ADIR}/lib/freetype2 jni/freetype2
+ln -fs ${MNIT_DIR}/lib/ftgles/ftgles/src jni/libftgles
 ln -fs ../../assets assets
 
 if [ $debug ]; then

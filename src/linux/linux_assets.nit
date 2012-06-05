@@ -27,6 +27,8 @@ redef class App
 			var ext = path.file_extension
 			if ext == "png" or ext == "jpg" or ext == "jpeg" then
 				return new Opengles1Image.from_file( path )
+			else if ext == "ttf" then
+				return new FTGLFont.from_file( path )
 			else # load as text
 				var f = new IFStream.open(path)
 				var content = f.read_all
