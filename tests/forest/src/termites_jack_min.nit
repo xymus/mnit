@@ -6,7 +6,7 @@ import termites
 import lumberjacks
 
 redef class Forest
-    redef fun prepare do super
-    redef fun react_to_event( e ) do super
+	redef fun prepare do super
+	redef fun react_to_event( e ) do super
 end
 

@@ -7,8 +7,7 @@ import forest
 
 var f = new Forest
 
-for i in [ 0 .. 10000 [
-do
-    var turn : GameTurn[Forest] = f.do_turn
+for i in [ 0 .. 10000 [ do
+	var turn : GameTurn[Forest] = f.do_turn
 end
 

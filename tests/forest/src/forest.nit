@@ -6,17 +6,17 @@ import grid
 class Forest
 special Game
 	redef type G : Forest
-	
+
 	var trees : List[ Tree ] = new List[ Tree ]
 	var grid : Grid[ Tree ] = new Grid[ Tree ]
-	
+
 	var total_tree_count : Int = 0
-	
+
 	init
-	do 
-		prepare 
+	do
+		prepare
 	end
-	
+
 	fun prepare
 	do
 		var o_node = grid.get_node_at( new Point( 0, 0 ) )
@@ -24,10 +24,10 @@ special Game
 		o_node.e = first_tree
 		#var e = new TreeBirthEvent( first_tree )
 		trees.add( first_tree )
-		
+
 		buckets.add_at( first_tree, 0 )
 	end
-	
+
 	redef fun do_post_turn( turn )
 	do
 #	   #print "doing post turn"
@@ -36,7 +36,7 @@ special Game
 			react_to_event( e )
 		end
 	end
-	
+
 	fun react_to_event( e : GameEvent )
 	do
 		if e isa TreeBirthEvent
@@ -53,7 +53,7 @@ special Game
 			#print "death at {turn.tick}"
 		end
 	end
-	
+
 	redef fun to_s
 	do
 		var text = new Buffer
@@ -63,7 +63,7 @@ special Game
 			do
 				var n = grid.get_node_at( new Point( x, y ) )
 				var tree = n.e
-				
+
 				if tree != null
 				then
 					text.append( "0" )
@@ -74,20 +74,20 @@ special Game
 			end
 			text.append( "#\n" )
 		end
-		
+
 		return text.to_s
 	end
 end
 
 class Tree
 special Bucketable[ Forest ]
-	
+
 	var stage : Int = 0 # 0=unborn, 1=growing, 2=adulthood, 3=useless/dead
 	var grow_until : nullable Int
 	var birth : Int = 0
-	
+
 	var ground : Node[ Tree ]
-	
+
 	var growth_rate : Float = 0.0
 	var growing_time : Int
 	var grown_size : Int
@@ -101,16 +101,16 @@ special Bucketable[ Forest ]
 			return grown_size.to_f
 		end
 	end
-	
+
 	init ( g : Node[ Tree ] )
 	do
 		ground = g
-		
+
 		growing_time = (50 + 100 .rand)
 		grown_size = 2+8 .rand
 		growth_rate = grown_size.to_f / growing_time.to_f
 	end
-	
+
 	redef fun do_turn( turn )
 	do
 		if stage == 0
@@ -119,9 +119,9 @@ special Bucketable[ Forest ]
 			grow_until = turn.tick + growing_time
 			turn.game.buckets.add_at( self, grow_until.as(not null) )
 			stage = 1 # is now growing
-			
+
 			#print "forest gr: {growth_rate}"
-			
+
 			#print "birth {self} grow until {grow_until.as(not null)}"
 		else if stage == 1
 		then # growing
@@ -147,18 +147,18 @@ special Bucketable[ Forest ]
 			turn.events.add( new TreeFallEvent( self ) )
 		end
 	end
-	
+
 	fun is_dead : Bool do return stage == 3
-	
+
 	fun do_adult_turn( turn : GameTurn[Forest] )
 	do
 		var r = 8.rand
 		if r == 0
 		then # die
 			die( turn )
-			
+
 		else # try to pollenise and live on
-		
+
 			var next_pos = ground.random_next.random_next.random_next
 			if next_pos.e == null
 			then # pollenise!
@@ -166,18 +166,18 @@ special Bucketable[ Forest ]
 				turn.events.add( new TreeBirthEvent( new_tree ) )
 				next_pos.e = new_tree # reserve space right away
 			end
-			
+
 			var next_action = turn.tick + (50 + 20 .rand)
 			turn.game.buckets.add_at( self, next_action )
 		end
 	end
-	
+
 	fun die( turn : GameTurn[ Forest ] ) : nullable TreeDeathEvent
 	do
 		if not is_dead then
 			var fall_at = turn.tick + (50 + 40 .rand)
 			turn.game.buckets.add_at( self, fall_at )
-			var e = new TreeDeathEvent( self ) 
+			var e = new TreeDeathEvent( self )
 			turn.events.add( e )
 			stage = 3 # is now dead but yet to fall
 			return e
