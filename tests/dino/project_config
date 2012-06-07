@@ -2,7 +2,7 @@ project_name=dino
 project_version=0.1
 
 # android
-android_app_name=dino
+android_app_name=Hunted Dino
 android_pkg_name=net.xymus.dino
 android_apk_name=dino
 
